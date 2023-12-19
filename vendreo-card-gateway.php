@@ -117,7 +117,9 @@ function vendreo_card_init_gateway_class()
             $this->secret_key = $this->testmode ? $this->get_option('test_secret_key') : $this->get_option('secret_key');
 
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
-            add_action('woocommerce_api_wc_vendreo_card_gateway', [$this, 'callback_handler']);
+
+            add_action('woocommerce_api_wc_vendreo_gateway', [$this, 'callback_handler']);
+
             add_action('wp_enqueue_scripts', [$this, 'payment_scripts']);
         }
 
@@ -203,11 +205,9 @@ function vendreo_card_init_gateway_class()
          */
         public function process_payment($order_id)
         {
-            global $woocommerce;
-
             $order = wc_get_order($order_id);
 
-            $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'wc-gateway-vendreo'));
+            $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'wc-card-gateway-vendreo'));
 
             $post = [
                 'application_key' => $this->application_key,
@@ -219,7 +219,7 @@ function vendreo_card_init_gateway_class()
                 'failed_url' => $this->get_cancelled_url(),
                 "reference_id" => $order_id,
                 "basket_items" => $this->get_basket_details(),
-                'order_reference' => 'TM-ORDER_#'.$order_id,
+                'order_reference' => 'TM-ORDER_#' . $order_id,
                 'mandate_3ds_challenge' => true,
                 'enable_address_field' => true,
                 'customer_billing_email' => $order->get_billing_email(),
@@ -232,7 +232,7 @@ function vendreo_card_init_gateway_class()
             header('Content-Type: application/json');
             $ch = curl_init($this->url);
             $authorization = "Authorization: Bearer " . $this->secret_key;
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json','Accept: application/json', $authorization]);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json', 'Accept: application/json', $authorization]);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
@@ -250,15 +250,14 @@ function vendreo_card_init_gateway_class()
 
             $result = json_decode($result);
 
-//            WC()->cart->empty_cart();
-
             return [
                 'result' => 'success',
                 'redirect' => $result->redirect_url
             ];
         }
 
-        public function get_cancelled_url() {
+        public function get_cancelled_url()
+        {
             return wc_get_checkout_url();
         }
 
@@ -277,7 +276,7 @@ function vendreo_card_init_gateway_class()
                 $basket[] = [
                     'description' => $product->get_name(),
                     'quantity' => $cart_item['quantity'],
-                    'price' => (int) ($product->get_price() * 100),
+                    'price' => (int)($product->get_price() * 100),
                     'total' => (int)(($product->get_price() * 100) * $cart_item['quantity']),
                 ];
             }
@@ -295,7 +294,8 @@ function vendreo_card_init_gateway_class()
 
             $order = wc_get_order($data->reference_id);
 
-            if ($data->act == 'payment_completed' || $data->act == 'card_payment_completed') {
+            if ($data->act == 'card_payment_completed') {
+                WC()->cart->empty_cart();
                 $order->payment_complete();
                 wc_reduce_stock_levels($order->get_id());
             }
@@ -325,7 +325,7 @@ function vendreo_card_init_gateway_class()
         global $woocommerce;
 
         $order = wc_get_order(wc_get_order_id_by_order_key($_GET['key']));
-        $order->update_status('on-hold', __('Awaiting Vendreo Payment Confirmation', 'wc-gateway-vendreo'));
+        $order->update_status('on-hold', __('Awaiting Vendreo Payment Confirmation', 'wc-card-gateway-vendreo'));
 
         return wp_redirect($order->get_checkout_order_received_url());
     }
