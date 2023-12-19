@@ -29,6 +29,8 @@ function vendreo_card_init_gateway_class()
 {
     class WC_Vendreo_Card_Gateway extends WC_Payment_Gateway
     {
+        protected string $url = 'https://api.vendreo-test.com/v1/request-payment';
+
         /**
          * @var string
          */
@@ -210,17 +212,25 @@ function vendreo_card_init_gateway_class()
             $post = [
                 'application_key' => $this->application_key,
                 'amount' => (int)($order->get_total() * 100),
-                'country_code' => 'GB',
                 'currency' => 'GBP',
                 "description" => "Order #{$order_id}",
-                'payment_type' => 'single',
+                'payment_type' => 'dynamic-one-off',
                 "redirect_url" => $this->get_return_url($order),
+                'failed_url' => $this->get_cancelled_url(),
                 "reference_id" => $order_id,
                 "basket_items" => $this->get_basket_details(),
+                'order_reference' => 'TM-ORDER_#'.$order_id,
+                'mandate_3ds_challenge' => true,
+                'enable_address_field' => true,
+                'customer_billing_email' => $order->get_billing_email(),
+                'customer_billing_address' => $order->get_billing_address_1(),
+                'customer_billing_town' => $order->get_billing_city(),
+                'customer_billing_post_code' => $order->get_billing_postcode(),
+                'country_code' => 'GB',
             ];
 
             header('Content-Type: application/json');
-            $ch = curl_init('https://api.vendreo.com/v1/request-payment');
+            $ch = curl_init($this->url);
             $authorization = "Authorization: Bearer " . $this->secret_key;
             curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json','Accept: application/json', $authorization]);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -240,12 +250,16 @@ function vendreo_card_init_gateway_class()
 
             $result = json_decode($result);
 
-            WC()->cart->empty_cart();
+//            WC()->cart->empty_cart();
 
             return [
                 'result' => 'success',
                 'redirect' => $result->redirect_url
             ];
+        }
+
+        public function get_cancelled_url() {
+            return wc_get_checkout_url();
         }
 
         /**
@@ -306,7 +320,7 @@ function vendreo_card_init_gateway_class()
     /**
      * @return mixed
      */
-    function at_rest_testing_endpoint()
+    function at_rest_card_testing_endpoint()
     {
         global $woocommerce;
 
@@ -329,7 +343,7 @@ function vendreo_card_init_gateway_class()
             $route,
             [
                 'methods' => WP_REST_Server::READABLE,
-                'callback' => 'at_rest_testing_endpoint'
+                'callback' => 'at_rest_card_testing_endpoint'
             ]
         );
     }
