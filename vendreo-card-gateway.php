@@ -99,7 +99,7 @@ function vendreo_card_init_gateway_class()
         public function __construct()
         {
             $this->id = 'vendreo_card';
-            $this->icon = 'https://app.vendreo.com/images/vendreo-fullcolour.svg';
+            $this->icon = 'https://cdn.vendreo.com/images/vendreo-fullcolour.svg';
             $this->has_fields = true;
             $this->method_title = 'Vendreo Card Payment';
             $this->method_description = 'Accept payments card payments using Vendreo\'s Payment Gateway';
