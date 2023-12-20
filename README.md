@@ -22,11 +22,11 @@ To install the Vendreo Card Gateway plugin, you need:
 For instructions, setup and configuration information please refer to the WooCommerce Integration guide in your Vendreo Admin area.
 
 
-## Note
+### Notes
 
-## Orders not being marked as Processing?
-Firstly, check that the callback endpoint is working as expected by visiting `https://your-site.com/wc-api/card_callback` in a browser. You should see `-1` shown.
-If not, this can be caused by permalinks adding a slash to the end of the url. 
+### Orders not being marked as Processing?
+Ensure that the callback endpoint is working by visiting `https://your-site.com/wc-api/card_callback` in a browser. You should see `-1` shown.
+If not, this can be caused by permalinks automatically adding a slash to the end of the url. 
 
 Try resolving this by:
 
