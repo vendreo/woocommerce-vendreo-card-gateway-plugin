@@ -117,9 +117,7 @@ function vendreo_card_init_gateway_class()
             $this->secret_key = $this->testmode ? $this->get_option('test_secret_key') : $this->get_option('secret_key');
 
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
-
-            add_action('woocommerce_api_wc_vendreo_gateway', [$this, 'callback_handler']);
-
+            add_action('woocommerce_api_card_callback', [$this, 'callback_handler']);
             add_action('wp_enqueue_scripts', [$this, 'payment_scripts']);
         }
 
@@ -248,6 +246,8 @@ function vendreo_card_init_gateway_class()
                 return false;
             }
 
+            WC()->cart->empty_cart();
+
             $result = json_decode($result);
 
             return [
@@ -295,7 +295,6 @@ function vendreo_card_init_gateway_class()
             $order = wc_get_order($data->reference_id);
 
             if ($data->act == 'card_payment_completed') {
-                WC()->cart->empty_cart();
                 $order->payment_complete();
                 wc_reduce_stock_levels($order->get_id());
             }
