@@ -21,8 +21,8 @@ To install the Vendreo Card Gateway plugin, you need:
  
 For instructions, setup and configuration information please refer to the WooCommerce Integration guide in your Vendreo Admin area.
 
-
-### Notes
+````
+### Notes:
 
 ### Orders not being marked as Processing?
 Ensure that the callback endpoint is working by visiting `https://your-site.com/wc-api/card_callback` in a browser. You should see `-1` shown.
@@ -32,7 +32,7 @@ Try resolving this by:
 
 1. In the WordPress admin visit `Settings / Permalinks`.
 2. Select `Day and name` under `Permalink structure` being sure to hit save.
-
+````
 ---
 
 ## Changelog
