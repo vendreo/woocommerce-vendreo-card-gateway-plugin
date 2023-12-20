@@ -1,5 +1,5 @@
 <p align="center">   
-    <img src="https://cdn.vendreo.com/images/vendreo-fullcolour.svg" width="250" height="auto">
+    <img src="https://cdn.vendreo.com/images/vendreo-fullcolour.svg" width="270" height="auto">
 </p>
 
 # WooCommerce Vendreo Card Gateway Plugin
@@ -11,7 +11,7 @@
 
 ### Description
 
-Vendreo's latest payment solution. Accept online card payments in your WooCommerce store safely and securely.
+Vendreo's latest payment solution. Accept card payments online through your WooCommerce store safely and securely.
 
 ### Requirements
 
