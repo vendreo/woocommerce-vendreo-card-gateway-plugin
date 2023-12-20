@@ -28,7 +28,7 @@ Admin area.
 
 
 #### Notes:
-#### Orders not being marked as Processing?
+**Orders not being marked as Processing?**\
 Ensure that the callback endpoint is working by visiting `https://your-site.com/wc-api/card_callback` in a browser.
 You should see `-1` shown.
 If not, this can be caused by permalinks automatically adding a slash to the end of the url.
