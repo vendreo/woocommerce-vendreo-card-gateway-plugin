@@ -8,7 +8,6 @@
  * Version: 1.0
  */
 
-use Automattic\WooCommerce\Blocks\Payments\Integrations\VendreoCard;
 use Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry;
 
 define( 'WC_VENDREO_CARD_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
@@ -368,7 +367,6 @@ function vendreo_card_init_gateway_class()
     function woocommerce_gateway_vendreo_card_woocommerce_block_support() {
         if ( class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
             require_once dirname( __FILE__ ) . '/includes/VendreoCard.php';
-
 
             add_action(
                 'woocommerce_blocks_payment_method_type_registration',

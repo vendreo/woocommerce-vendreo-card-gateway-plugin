@@ -1,13 +1,9 @@
 <?php
 
-namespace Automattic\WooCommerce\Blocks\Payments\Integrations;
-
-use Automattic\WooCommerce\Blocks\Assets\Api;
+use Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType;
 
 /**
- * Cheque payment method integration
- *
- * @since 2.6.0
+ * VendreoCard payment method integration
  */
 final class VendreoCard extends AbstractPaymentMethodType {
     /**
@@ -40,12 +36,10 @@ final class VendreoCard extends AbstractPaymentMethodType {
      * @return boolean
      */
     public function is_active() {
-        return true;
         return filter_var( $this->get_setting( 'enabled', false ), FILTER_VALIDATE_BOOLEAN );
     }
 
     public function get_payment_method_script_handles() {
-
         wp_register_script(
             'wc-vendreo-card-payment-method',
             plugins_url( 'wc-vendreo-card-payment-method.js', __FILE__ ),
@@ -66,7 +60,6 @@ final class VendreoCard extends AbstractPaymentMethodType {
         return [
             'title'       => $this->get_setting( 'title' ),
             'description' => $this->get_setting( 'description' ),
-//            'supports'    => $this->get_supported_features(),
         ];
     }
 }
