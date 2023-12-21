@@ -1,19 +1,5 @@
+//this is not right!!
 window.addEventListener('load', function () {
-    // const { registerExpressPaymentMethod } = window.wc.wcBlocksRegistry;
-    //
-    // const options = {
-    //     name: 'my_payment_method',
-    //     content: null,
-    //     edit: null,
-    //     canMakePayment: () => true,
-    //     paymentMethodId: 'new_payment_method',
-    //     supports: {
-    //         features: [],
-    //     },
-    // };
-    //
-    // registerExpressPaymentMethod(options);
-
     (() => {
         "use strict";
         const e = window.React,
@@ -37,8 +23,4 @@ window.addEventListener('load', function () {
             };
         (0, t.registerPaymentMethod)(r)
     })();
-
 })
-
-
-
