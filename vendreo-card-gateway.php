@@ -8,6 +8,11 @@
  * Version: 1.0
  */
 
+use Automattic\WooCommerce\Blocks\Payments\Integrations\VendreoCard;
+use Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry;
+
+define( 'WC_VENDREO_CARD_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
+
 add_filter('woocommerce_payment_gateways', 'vendreo_card_add_gateway_class');
 add_action('plugins_loaded', 'vendreo_card_init_gateway_class');
 
@@ -27,9 +32,13 @@ function vendreo_card_add_gateway_class($gateways)
  */
 function vendreo_card_init_gateway_class()
 {
+
     class WC_Vendreo_Card_Gateway extends WC_Payment_Gateway
     {
-        protected string $url = 'https://api.vendreo-test.com/v1/request-payment';
+        /**
+         * @var string
+         */
+        protected $url = 'https://api.vendreo-test.com/v1/request-payment';
 
         /**
          * @var string
@@ -102,7 +111,7 @@ function vendreo_card_init_gateway_class()
             $this->icon = 'https://cdn.vendreo.com/images/vendreo-fullcolour.svg';
             $this->has_fields = true;
             $this->method_title = 'Vendreo Card Payment';
-            $this->method_description = 'Accept payments card payments using Vendreo\'s Payment Gateway';
+            $this->method_description = 'Accept card payments using Vendreo\'s Payment Gateway';
 
             $this->supports = ['products'];
 
@@ -119,6 +128,11 @@ function vendreo_card_init_gateway_class()
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, [$this, 'process_admin_options']);
             add_action('woocommerce_api_card_callback', [$this, 'callback_handler']);
             add_action('wp_enqueue_scripts', [$this, 'payment_scripts']);
+        }
+
+        public function is_active()
+        {
+            return $this->enabled;
         }
 
         /**
@@ -348,4 +362,20 @@ function vendreo_card_init_gateway_class()
     }
 
     add_action('rest_api_init', 'at_rest_init');
+
+    add_action( 'woocommerce_blocks_loaded', 'woocommerce_gateway_vendreo_card_woocommerce_block_support' );
+
+    function woocommerce_gateway_vendreo_card_woocommerce_block_support() {
+        if ( class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+            require_once dirname( __FILE__ ) . '/includes/VendreoCard.php';
+
+
+            add_action(
+                'woocommerce_blocks_payment_method_type_registration',
+                function( PaymentMethodRegistry $payment_method_registry ) {
+                    $payment_method_registry->register( new VendreoCard() );
+                }
+            );
+        }
+    }
 }
