@@ -6,12 +6,12 @@ final class Vendreo_Card_Gateway_Blocks extends AbstractPaymentMethodType
 {
     private $gateway;
 
-    protected $name = 'vendreo_gateway';
+    protected $name = 'woocommerce_vendreo_card_gateway';
 
     public function initialize()
     {
-        $this->settings = get_option('woocommerce_vendreo_gateway_settings', []);
-        $this->gateway = new Vendreo_Card_Gateway();
+        $this->settings = get_option('woocommerce_woocommerce_vendreo_card_gateway_settings', []);
+        $this->gateway = new WooCommerce_Vendreo_Card_Gateway();
     }
 
     public function is_active()
@@ -22,8 +22,8 @@ final class Vendreo_Card_Gateway_Blocks extends AbstractPaymentMethodType
     public function get_payment_method_script_handles()
     {
         wp_register_script(
-            'vendreo_gateway-blocks-integration',
-            plugin_dir_url(__FILE__) . 'checkout.js',
+            'woocommerce_vendreo_card_gateway-blocks-integration',
+            VENDREO_CARD__PLUGIN_DIR_PATH . '/includes/js/vendreo-card-checkout.js',
             [
                 'wc-blocks-registry',
                 'wc-settings',
@@ -36,10 +36,10 @@ final class Vendreo_Card_Gateway_Blocks extends AbstractPaymentMethodType
         );
 
         if (function_exists('wp_set_script_translations')) {
-            wp_set_script_translations('vendreo_gateway-blocks-integration');
+            wp_set_script_translations('woocommerce_vendreo_card_gateway-blocks-integration');
         }
 
-        return ['vendreo_gateway-blocks-integration'];
+        return ['woocommerce_vendreo_card_gateway-blocks-integration'];
     }
 
     public function get_payment_method_data()

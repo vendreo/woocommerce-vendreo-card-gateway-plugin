@@ -13,6 +13,8 @@ Domain Path: /languages
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
+define( 'VENDREO_CARD__PLUGIN_DIR_PATH', plugins_url( '', __FILE__ ) );
+
 add_action('plugins_loaded', 'woocommerce_vendreo_card_plugin', 0);
 
 function woocommerce_vendreo_card_plugin()
@@ -20,14 +22,15 @@ function woocommerce_vendreo_card_plugin()
     if (!class_exists('WC_Payment_Gateway'))
         return;
 
-    include(plugin_dir_path(__FILE__) . 'vendreo-card-gateway.php');
+    include(plugin_dir_path(__FILE__) . 'includes/php/woocommerce-vendreo-card-gateway.php');
 }
 
-add_filter('woocommerce_payment_gateways', 'add_vendreo_gateway');
+add_filter('woocommerce_payment_gateways', 'add_woocommerce_vendreo_card_gateway');
 
-function add_vendreo_gateway($gateways)
+function add_woocommerce_vendreo_card_gateway($gateways)
 {
-    $gateways[] = 'Vendreo_Card_Gateway';
+    $gateways[] = 'WooCommerce_Vendreo_Card_Gateway';
+
     return $gateways;
 }
 
@@ -53,7 +56,7 @@ function vendreo_card_register_order_approval_payment_method_type()
         return;
     }
 
-    require_once plugin_dir_path(__FILE__) . 'vendreo-block.php';
+    require_once plugin_dir_path(__FILE__) . 'includes/php/vendreo-card-block.php';
 
     add_action(
         'woocommerce_blocks_payment_method_type_registration',

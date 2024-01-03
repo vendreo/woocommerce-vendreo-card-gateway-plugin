@@ -1,6 +1,6 @@
 <?php
 
-class Vendreo_Card_Gateway extends WC_Payment_Gateway
+class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway
 {
     protected $url = 'https://api.vendreo-test.com/v1/request-payment';
     protected $testmode;
@@ -9,10 +9,10 @@ class Vendreo_Card_Gateway extends WC_Payment_Gateway
 
     public function __construct()
     {
-        $this->id = 'vendreo_gateway';
-        $this->method_title = __('WooCommerce Vendreo Gateway (Card)', 'vendreo-gateway');
+        $this->id = 'woocommerce_vendreo_card_gateway';
+        $this->method_title = __('WooCommerce Vendreo Gateway (Card)', 'woocommerce-vendreo-card-gateway');
 
-        $this->method_description = __('Accept payments via card or bank transfer using Vendreo\'s Payment Gateway.', 'vendreo-gateway');
+        $this->method_description = __('Accept payments via card or bank transfer using Vendreo\'s Payment Gateway.', 'woocommerce-vendreo-card-gateway');
         $this->icon = 'https://cdn.vendreo.com/images/vendreo-fullcolour.svg';
 
         $this->supports = ['products'];
@@ -82,7 +82,7 @@ class Vendreo_Card_Gateway extends WC_Payment_Gateway
     {
         $order = wc_get_order($order_id);
 
-        $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'wc-card-gateway-vendreo'));
+        $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'woocommerce-vendreo-card-gateway'));
 
         $post = [
             'application_key' => $this->application_key,
@@ -94,7 +94,7 @@ class Vendreo_Card_Gateway extends WC_Payment_Gateway
             'failed_url' => $this->get_cancelled_url(),
             "reference_id" => $order_id,
             "basket_items" => $this->get_basket_details(),
-            'order_reference' => 'TM-ORDER_#' . $order_id,
+            'order_reference' => 'TM-ORDER_#' . $order_id . '|' . wp_generate_password(5, false, false),
             'mandate_3ds_challenge' => true,
             'enable_address_field' => true,
             'customer_billing_email' => $order->get_billing_email(),
@@ -161,12 +161,17 @@ class Vendreo_Card_Gateway extends WC_Payment_Gateway
     {
         $json = file_get_contents('php://input');
         $data = json_decode($json);
+        $orderId = explode('|', $data->reference_id)[0];
 
-        $order = wc_get_order($data->reference_id);
+        $order = wc_get_order($orderId);
 
-        if ($data->act == 'card_payment_completed') {
+        if ($data->act == 'card_payment_completed' || $data->act === 'payment_completed')  {
             $order->payment_complete();
             wc_reduce_stock_levels($order->get_id());
+        }
+
+        if($data->act === 'card_payment_failed' || $data->act === 'payment_failed'){
+            $order->update_status('failed-payment', __('Vendreo Card Payment Failed', 'woocommerce-vendreo-card-gateway'));
         }
     }
 }
