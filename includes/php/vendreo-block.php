@@ -23,7 +23,7 @@ final class Vendreo_Card_Gateway_Blocks extends AbstractPaymentMethodType
     {
         wp_register_script(
             'vendreo_gateway-blocks-integration',
-            plugin_dir_url(__FILE__) . 'checkout.js',
+            plugin_dir_path( dirname( __FILE__ ) ). 'js/checkout.js',
             [
                 'wc-blocks-registry',
                 'wc-settings',
