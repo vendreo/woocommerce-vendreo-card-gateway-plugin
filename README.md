@@ -2,7 +2,7 @@
     <img src="https://cdn.vendreo.com/images/vendreo-fullcolour.svg" width="270" height="auto">
 </p>
 
-# WooCommerce Vendreo Card Gateway Plugin
+# Vendreo WooCommerce Card Gateway Plugin
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![PHP 7.2](https://img.shields.io/badge/PHP-7.2-blue.svg)
@@ -23,23 +23,21 @@ To install the Vendreo Card Gateway plugin, you need:
 
 ### Instructions, Setup and Configuration
 
-For instructions, setup and configuration information please refer to the WooCommerce Integration guide in your Vendreo
-Admin area.
+For instructions, setup and configuration information please refer to the `WooCommerce Integration Guide` in your Vendreo
+Admin area `https://app.vendreo.com/developer/woocommerce-integration`.
 
 
 #### Notes:
 **Orders not being marked as Processing?**\
-Ensure that the callback endpoint is working by visiting `https://your-site.com/wc-api/card_callback` in a browser.
-You should see `-1` shown.
+Ensure that the callback endpoint is working by visiting `https://your-site.com/wc-api/card_callback` in your browser.
+You should see `-1` shown with a 200 response code.
+
 If not, this can be caused by permalinks automatically adding a slash to the end of the url.
 Try resolving this by:
 1. In the WordPress admin visit `Settings / Permalinks`.
 2. Select `Day and name` under `Permalink structure` being sure to hit save.
-
 ---
 
 ## Changelog
 
 As documented here [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
-
-blocks fix
