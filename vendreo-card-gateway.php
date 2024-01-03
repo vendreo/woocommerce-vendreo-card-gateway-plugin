@@ -170,4 +170,3 @@ class Vendreo_Card_Gateway extends WC_Payment_Gateway
         }
     }
 }
-
