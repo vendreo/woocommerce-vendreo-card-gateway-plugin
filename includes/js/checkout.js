@@ -1,10 +1,10 @@
-const settings = window.wc.wcSettings.getSetting( 'vendreo_gateway_data', {} );
-const label = window.wp.htmlEntities.decodeEntities( settings.title ) || window.wp.i18n.__( 'Pay by Vendreo (Card)', 'vendreo_gateway' );
+const settings = window.wc.wcSettings.getSetting( 'woocommerce_vendreo_card_gateway_data', {} );
+const label = window.wp.htmlEntities.decodeEntities( settings.title ) || window.wp.i18n.__( 'Pay by Vendreo (Card)', 'woocommerce_vendreo_card_gateway' );
 const Content = () => {
     return window.wp.htmlEntities.decodeEntities( settings.description || '' );
 };
 const Block_Gateway = {
-    name: 'vendreo_gateway',
+    name: 'woocommerce_vendreo_card_gateway',
     label: label,
     content: Object( window.wp.element.createElement )( Content, null ),
     edit: Object( window.wp.element.createElement )( Content, null ),
