@@ -41,3 +41,9 @@ Try resolving this by:
 ## Changelog
 
 As documented here [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
+
+
+### [1.0.0] - 04-01-2024
+
+#### Added
+- Card gateway plugin released.
