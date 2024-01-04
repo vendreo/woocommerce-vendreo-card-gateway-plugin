@@ -1,17 +1,19 @@
-const settings = window.wc.wcSettings.getSetting( 'woocommerce_vendreo_card_gateway_data', {} );
-const label = window.wp.htmlEntities.decodeEntities( settings.title ) || window.wp.i18n.__( 'Pay by Vendreo (Card)', 'woocommerce_vendreo_card_gateway' );
+const ven_card_settings = window.wc.wcSettings.getSetting( 'woocommerce_vendreo_card_gateway_data', {} );
+const ven_card_label = window.wp.htmlEntities.decodeEntities( ven_card_settings.title ) || window.wp.i18n.__( 'Pay by Vendreo (Card)', 'woocommerce_vendreo_card_gateway' );
 const Content = () => {
-    return window.wp.htmlEntities.decodeEntities( settings.description || '' );
+    return window.wp.htmlEntities.decodeEntities( ven_card_settings.description || '' );
 };
-const Block_Gateway = {
+
+const ven_card_block_gateway = {
     name: 'woocommerce_vendreo_card_gateway',
-    label: label,
+    label: ven_card_label,
     content: Object( window.wp.element.createElement )( Content, null ),
     edit: Object( window.wp.element.createElement )( Content, null ),
     canMakePayment: () => true,
-    ariaLabel: label,
+    ariaLabel: ven_card_label,
     supports: {
-        features: settings.supports,
+        features: ven_card_settings.supports,
     },
 };
-window.wc.wcBlocksRegistry.registerPaymentMethod( Block_Gateway );
+
+window.wc.wcBlocksRegistry.registerPaymentMethod( ven_card_block_gateway );
