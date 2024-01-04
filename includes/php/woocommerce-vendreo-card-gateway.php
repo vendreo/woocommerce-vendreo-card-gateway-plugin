@@ -2,6 +2,7 @@
 
 class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway
 {
+    //todo change to production
     protected $url = 'https://api.vendreo-test.com/v1/request-payment';
     protected $testmode;
     protected $application_key;
