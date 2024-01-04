@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WooCommerce Vendreo Gateway (Card)
-Description: Accept card payments using Vendreo's Payment Gateway.
+Description: Accept card payments using Vendreo's Payment Gatewayy.
 Version: 1.0.0
 Author: Vendreo
 Author URI: docs.vendreo.com
