@@ -2,10 +2,19 @@
     <img src="https://cdn.vendreo.com/images/vendreo-fullcolour.svg" width="270" height="auto">
 </p>
 
-# Vendreo WooCommerce Card Gateway Plugin
+# WooCommerce Vendreo Card Gateway Plugin
+Tags: wordpress, wordpress-plugin, woocommerce, visa, payment-gateway, woocommerce-plugin, payment-processing, woocommerce-payment, mastercard\
+Requires at least WordPress: 6.1.1\
+Tested on WordPress up to: 6.4.2\
+Requires at least WooCommerce: 6.9\
+Tested on WooCommerce up to: 8.4.0\
+Tested on PHP: 7.4 & 8.0\
+Stable tag: 1.0.1\
+License: GPLv3\
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![PHP 7.2](https://img.shields.io/badge/PHP-7.2-blue.svg)
+[![License: MIT](https://img.shields.io/badge/license-GPLv3-blue)](https://opensource.org/licenses/GPLv3)
+![PHP 7.2](https://img.shields.io/badge/PHP-7.4-blue.svg)
 ![Wordpress](https://img.shields.io/badge/wordpress-v6.1.1-green)
 ![woocommerce](https://img.shields.io/badge/woocommerce-v6.9-green)
 
@@ -15,11 +24,13 @@ Vendreo's latest payment solution. Accept card payments online through your WooC
 
 ### Requirements
 
-To install the Vendreo Card Gateway plugin, you need:
+To install the WooCommerce Vendreo Card Gateway Plugin, you need:
 
 * WordPress Version 6.1.1 or newer (installed).
 * WooCommerce Version 6.9 or newer (installed and activated).
-* PHP Version 7.2 or newer.
+* PHP Version 7.4 or newer.
+
+In order to process payments you will also need a Vendreo account. To get started please visit here. [Vendreo](https://vendreo.com). 
 
 ### Instructions, Setup and Configuration
 
@@ -42,6 +53,11 @@ Try resolving this by:
 
 As documented here [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 
+### [1.0.1] - 10-01-2024
+
+#### Changed
+- License to GPLv3.
+- ReadMe file changes.
 
 ### [1.0.0] - 04-01-2024
 
