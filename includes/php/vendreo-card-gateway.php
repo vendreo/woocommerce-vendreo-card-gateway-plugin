@@ -10,10 +10,10 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway
     public function __construct()
     {
         $this->id = 'woocommerce_vendreo_card_gateway';
-        $this->method_title = __('WooCommerce Vendreo Gateway (Card)', 'woocommerce-vendreo-card-gateway');
+        $this->method_title = __('Vendreo Gateway (Card)', 'vendreo-card-gateway');
         $this->title = 'Vendreo (Card)';
 
-        $this->method_description = __('Accept card payments using Vendreo\'s Payment Gateway.', 'woocommerce-vendreo-card-gateway');
+        $this->method_description = __('Accept card payments using Vendreo\'s Payment Gateway.', 'vendreo-card-gateway');
         $this->icon = 'https://cdn.vendreo.com/images/vendreo-fullcolour.svg';
 
         $this->supports = ['products'];
@@ -83,7 +83,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway
     {
         $order = wc_get_order($order_id);
 
-        $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'woocommerce-vendreo-card-gateway'));
+        $order->update_status('pending-payment', __('Awaiting Vendreo Card Payment', 'vendreo-card-gateway'));
 
         $post = [
             'application_key' => $this->application_key,
@@ -172,7 +172,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway
         }
 
         if($data->act === 'card_payment_failed' || $data->act === 'payment_failed'){
-            $order->update_status('failed', __('Vendreo Card Payment Failed', 'woocommerce-vendreo-card-gateway'));
+            $order->update_status('failed', __('Vendreo Card Payment Failed', 'vendreo-card-gateway'));
         }
     }
 }
