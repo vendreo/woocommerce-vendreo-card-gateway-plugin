@@ -1,4 +1,4 @@
-=== Woocommerce Vendreo Card Gateway Plugin ===
+=== Vendreo Card Gateway Plugin ===
 Contributors: vendreo
 Tags: wordpress, wordpress-plugin, woocommerce, visa, payment-gateway, woocommerce-plugin, payment-processing, woocommerce-payment, mastercard
 Requires at least: 6.1
@@ -35,7 +35,7 @@ Try resolving this by:
 
 == Screenshots ==
 
-1. The WooCommerce Vendreo Card Gateway Plugins setting page.
+1. The Vendreo Card Gateway Plugins setting page.
 
 == Changelog ==
 
