@@ -9,7 +9,7 @@ Tested on WordPress up to: 6.4.2\
 Requires at least WooCommerce: 6.9\
 Tested on WooCommerce up to: 8.4.0\
 Tested on PHP: 7.4 & 8.0\
-Stable tag: 1.0.0\
+Stable tag: 1.0.1\
 License: GPLv3\
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -53,6 +53,11 @@ Try resolving this by:
 
 As documented here [Keep A Change Log](https://keepachangelog.com/en/1.0.0/).
 
+### [1.0.1] - 10-01-2024
+
+#### Changed
+- License to GPLv3.
+- ReadMe file changes.
 
 ### [1.0.0] - 04-01-2024
 

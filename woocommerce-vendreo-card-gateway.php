@@ -3,7 +3,7 @@
 Plugin Name: WooCommerce Vendreo Card Gateway Plugin
 Plugin URI: https://github.com/vendreo/woocommerce-vendreo-card-gateway-plugin
 Description: Accept card payments using Vendreo's Payment Gateway.
-Version: 1.0.0
+Version: 1.0.1
 Author: Vendreo
 Author URI: docs.vendreo.com
 License: GPLv3
@@ -13,7 +13,7 @@ Tested on WordPress up to: 6.4.2
 Requires at least WooCommerce: 6.9
 Tested on WooCommerce up to: 8.4.0
 Tested on PHP: 7.4 & 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Text Domain: woocommerce-vendreo-card-gateway
 Domain Path: /languages
 */
