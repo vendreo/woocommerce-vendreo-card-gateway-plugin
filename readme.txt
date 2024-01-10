@@ -40,7 +40,7 @@ Try resolving this by:
 == Changelog ==
 
 = 1.0.1 =
-* Renamed project.
+* Renamed files to remove the word WooCommerce.
 * License changed to GPLv3.
 * ReadMe file changes.
 
