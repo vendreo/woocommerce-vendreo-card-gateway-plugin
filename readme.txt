@@ -40,6 +40,7 @@ Try resolving this by:
 == Changelog ==
 
 = 1.0.1 =
+* Renamed project.
 * License changed to GPLv3.
 * ReadMe file changes.
 
