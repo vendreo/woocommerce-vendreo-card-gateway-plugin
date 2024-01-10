@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Woocommerce Vendreo OB Gateway Plugin ===
 Contributors: vendreo
 Tags: wordpress, wordpress-plugin, woocommerce, visa, payment-gateway, woocommerce-plugin, payment-processing, woocommerce-payment, mastercard
 Requires at least: 6.1
