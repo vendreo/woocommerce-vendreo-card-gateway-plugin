@@ -1,28 +1,34 @@
-name: "PHPCS Lint"
+name: Lint
 
 on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
   push:
-    paths:
-      - "**.php"
-      - "phpcs.xml"
-      - ".github/workflows/phpcs.yml"
+    branches:
+      - *
+  # Replace pull_request with pull_request_target if you
+  # plan to use this action with forks, see the Limitations section
+  pull_request:
+    branches:
+      - main
+
+# Down scope as necessary via https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+permissions:
+  checks: write
+  contents: write
 
 jobs:
-  php-cs-fixer:
+  run-linters:
+    name: Run linters
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          token: ${{ secrets.PAT_BOT_SECRET || github.token }}
+      - name: Check out Git repository
+        uses: actions/checkout@v3
 
-      - name: Run PHP CS Fixer
-        uses: actions/checkout@v1
-      - uses: michaelw90/PHP-Lint@master
+      # Install your linters here
 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
         with:
-          commit_message: Fix styling
+        # Enable your linters here
