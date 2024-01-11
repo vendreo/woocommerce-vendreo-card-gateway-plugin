@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 Plugin Name: Vendreo Card Gateway
 Plugin URI: https://github.com/vendreo/woocommerce-vendreo-card-gateway-plugin
 Description: Accept card payments using Vendreo's Payment Gateway.
@@ -20,10 +20,13 @@ Domain Path: /languages
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
-define( 'VENDREO_CARD__PLUGIN_DIR_PATH', plugins_url( '', __FILE__ ) );
+define('VENDREO_CARD__PLUGIN_DIR_PATH', plugins_url( '', __FILE__ ));
 
 add_action('plugins_loaded', 'woocommerce_vendreo_card_plugin', 0);
 
+/**
+ * @return void
+ */
 function woocommerce_vendreo_card_plugin()
 {
     if (!class_exists('WC_Payment_Gateway'))
@@ -34,6 +37,10 @@ function woocommerce_vendreo_card_plugin()
 
 add_filter('woocommerce_payment_gateways', 'add_woocommerce_vendreo_card_gateway');
 
+/**
+ * @param $gateways
+ * @return mixed
+ */
 function add_woocommerce_vendreo_card_gateway($gateways)
 {
     $gateways[] = 'WooCommerce_Vendreo_Card_Gateway';
