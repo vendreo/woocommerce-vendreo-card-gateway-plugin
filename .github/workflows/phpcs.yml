@@ -8,19 +8,37 @@ on:
       - ".github/workflows/phpcs.yml"
 
 jobs:
-  phpcs:
+  php-cs-fixer:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install PHP_CodeSniffer
-        run: |
-          curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
-          php phpcs.phar --version
-
-      - uses: thenabeel/action-phpcs@v8
+        uses: actions/checkout@v3
         with:
-          files: "**.php" # you may customize glob as needed
-          phpcs_path: php phpcs.phar
-          standard: phpcs.xml
+          ref: ${{ github.head_ref }}
+          token: ${{ secrets.PAT_BOT_SECRET || github.token }}
+
+      - name: Run PHP CS Fixer
+        uses: docker://oskarstark/php-cs-fixer-ga
+        with:
+          args: --config=.php-cs-fixer.dist.php --allow-risky=yes
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Fix styling
+    auto-merge:
+      name: Auto-Merge PRs by Dependabot
+      needs:
+        - php-cs-fixer
+        - phpunit
+      runs-on: ubuntu-latest
+      permissions:
+        pull-requests: write
+        contents: write
+      steps:
+        - uses: fastify/github-action-merge-dependabot@v3.9.1
+          with:
+            github-token: ${{ github.token }}
+            target: minor
+
