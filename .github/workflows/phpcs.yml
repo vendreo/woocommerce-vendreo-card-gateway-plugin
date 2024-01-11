@@ -19,7 +19,7 @@ jobs:
           token: ${{ secrets.PAT_BOT_SECRET || github.token }}
 
       - name: Run PHP CS Fixer
-      - uses: actions/checkout@v1
+        uses: actions/checkout@v1
       - uses: michaelw90/PHP-Lint@master
 
       - name: Commit changes
