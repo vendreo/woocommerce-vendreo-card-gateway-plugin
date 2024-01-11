@@ -29,6 +29,7 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v2
         with:
+          auto_fix: true
           php_codesniffer: true
           # Optional: Ignore warnings
           php_codesniffer_args: "-n"
