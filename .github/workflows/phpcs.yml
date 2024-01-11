@@ -27,18 +27,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Fix styling
-    auto-merge:
-      name: Auto-Merge PRs by Dependabot
-      needs:
-        - php-cs-fixer
-        - phpunit
-      runs-on: ubuntu-latest
-      permissions:
-        pull-requests: write
-        contents: write
-      steps:
-        - uses: fastify/github-action-merge-dependabot@v3.9.1
-          with:
-            github-token: ${{ github.token }}
-            target: minor
-
