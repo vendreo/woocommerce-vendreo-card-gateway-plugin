@@ -19,9 +19,8 @@ jobs:
           token: ${{ secrets.PAT_BOT_SECRET || github.token }}
 
       - name: Run PHP CS Fixer
-        uses: docker://oskarstark/php-cs-fixer-ga
-        with:
-          args: --config=phpcs.xml.dist
+      - uses: actions/checkout@v1
+      - uses: michaelw90/PHP-Lint@master
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
