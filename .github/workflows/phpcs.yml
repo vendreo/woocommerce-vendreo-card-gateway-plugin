@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        runs:
+          using: 'node20'
+          main: 'main.js'
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
