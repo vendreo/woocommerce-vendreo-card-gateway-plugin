@@ -29,7 +29,7 @@ function woocommerce_vendreo_card_plugin() {
 		return;
 	}
 
-	include plugin_dir_path( __FILE__ ) . 'includes/php/class-vendreo-card-gateway.php';
+	include plugin_dir_path( __FILE__ ) . 'includes/php/class-woocommerce-vendreo-card-gateway.php';
 }
 
 add_filter( 'woocommerce_payment_gateways', 'add_woocommerce_vendreo_card_gateway' );
