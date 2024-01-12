@@ -1,4 +1,4 @@
-*** Changelog ***
+== Changelog ==
 
 = 1.0.1 - 2024-01-05 =
 * Renamed files to remove the word WooCommerce.
