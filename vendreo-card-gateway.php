@@ -20,16 +20,17 @@ Domain Path: /languages
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
-define( 'VENDREO_CARD__PLUGIN_DIR_PATH', plugins_url( '', __FILE__ ) );
+define('VENDREO_CARD__PLUGIN_DIR_PATH', plugins_url('', __FILE__));
 
 add_action('plugins_loaded', 'woocommerce_vendreo_card_plugin', 0);
 
 function woocommerce_vendreo_card_plugin()
 {
-    if (!class_exists('WC_Payment_Gateway'))
+    if (!class_exists('WC_Payment_Gateway')) {
         return;
+    }
 
-    include(plugin_dir_path(__FILE__) . 'includes/php/vendreo-card-gateway.php');
+    include plugin_dir_path(__FILE__).'includes/php/vendreo-card-gateway.php';
 }
 
 add_filter('woocommerce_payment_gateways', 'add_woocommerce_vendreo_card_gateway');
@@ -42,7 +43,7 @@ function add_woocommerce_vendreo_card_gateway($gateways)
 }
 
 /**
- * Custom function to declare compatibility with cart_checkout_blocks feature
+ * Custom function to declare compatibility with cart_checkout_blocks feature.
  */
 function declare_cart_checkout_blocks_compatibility()
 {
@@ -55,7 +56,7 @@ add_action('before_woocommerce_init', 'declare_cart_checkout_blocks_compatibilit
 add_action('woocommerce_blocks_loaded', 'vendreo_card_register_order_approval_payment_method_type');
 
 /**
- * Custom function to register a payment method type
+ * Custom function to register a payment method type.
  */
 function vendreo_card_register_order_approval_payment_method_type()
 {
@@ -63,12 +64,12 @@ function vendreo_card_register_order_approval_payment_method_type()
         return;
     }
 
-    require_once plugin_dir_path(__FILE__) . 'includes/php/vendreo-card-block.php';
+    require_once plugin_dir_path(__FILE__).'includes/php/vendreo-card-block.php';
 
     add_action(
         'woocommerce_blocks_payment_method_type_registration',
         function (Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry) {
-            $payment_method_registry->register(new Vendreo_Card_Gateway_Blocks);
+            $payment_method_registry->register(new Vendreo_Card_Gateway_Blocks());
         }
     );
 }
