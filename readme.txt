@@ -39,12 +39,11 @@ Try resolving this by:
 
 == Changelog ==
 
-= 1.0.1 =
-* Renamed files to remove the word WooCommerce.
-* License changed to GPLv3.
-* ReadMe file changes.
+= 1.0.1 2024-01-05 =
+* Update - Renamed files to remove the word WooCommerce.
+* Update - License changed to GPLv3.
+* Tweak - ReadMe file changes.
 
-= 1.0.0 =
-* Card gateway plugin released.
+[See changelog for all versions](https://raw.githubusercontent.com/vendreo/woocommerce-vendreo-card-gateway-plugin/main/changelog.txt).
 
 == Upgrade Notice ==
