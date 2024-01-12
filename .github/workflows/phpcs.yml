@@ -3,7 +3,7 @@ name: PHPCS Auto-fix and Commit
 on:
   push:
     branches:
-      - main  # Change this to your branch name
+      - feature/phpcs
 
 jobs:
   phpcs:
