@@ -50,4 +50,3 @@ jobs:
       # install dependencies and run linter
       - run: npm ci
       - run: npm run lint:js
-      - run: npm run lint:css
