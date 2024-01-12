@@ -102,23 +102,23 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'country_code'               => 'GB',
 		];
 
-        $response = wp_remote_post(
-            $this->url,
-            array(
-                'method' => 'POST',
-                'headers'     => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->secret_key
-                ],
-                'redirection' => 5,
-                'httpversion' => '1.0',
-                'timeout' => 45,
-                'body' => json_encode( $post ),
-            )
-        );
+		$response = wp_remote_post(
+			$this->url,
+			[
+				'method'      => 'POST',
+				'headers'     => [
+					'Content-Type'  => 'application/json',
+					'Accept'        => 'application/json',
+					'Authorization' => 'Bearer ' . $this->secret_key,
+				],
+				'redirection' => 5,
+				'httpversion' => '1.0',
+				'timeout'     => 45,
+				'body'        => wp_json_encode( $post ),
+			]
+		);
 
-        if ( is_wp_error( $response ) ) {
+		if ( is_wp_error( $response ) ) {
 			return false;
 		}
 
