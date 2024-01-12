@@ -1,0 +1,53 @@
+name: Linting
+
+on:
+  push:
+    branch: '**'
+
+env:
+  WP_VERSION: latest
+  WC_VERSION: latest
+
+jobs:
+  php_lint:
+    name:    PHP linting
+    runs-on: ubuntu-latest
+    steps:
+      # clone the repository
+      - uses: actions/checkout@v2
+      # enable dependencies caching
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/composer/
+          key:  ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+      # setup PHP, but without debug extensions for reasonable performance
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools:       composer
+          coverage:    none
+      # install dependencies and run linter
+      - run: composer self-update 2.0.6 && composer install --no-progress && ./vendor/bin/phpcs --standard=phpcs.xml.dist -n $(git ls-files | grep .php$)
+  js_css_lint:
+    name: JS & CSS linting
+    runs-on: ubuntu-latest
+    steps:
+      # clone the repository
+      - uses: actions/checkout@v2
+      # use the node version defined in nvmrc
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+      # enable dependencies caching
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/composer/
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm/
+          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+      # install dependencies and run linter
+      - run: npm ci
+      - run: npm run lint:js
+      #- run: npm run lint:css

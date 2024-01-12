@@ -1,0 +1,32 @@
+{
+  "name": "woocommerce-vendreo-card-gateway-plugin",
+  "title": "Woocommerce Vendreo Card Gateway Plugin",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vendreo/woocommerce-vendreo-card-gateway-plugin.git"
+  },
+  "devDependencies": {
+    "@wordpress/eslint-plugin": "^17.5.0",
+    "eslint": "^8.56.0",
+    "lint-staged": "11.1.2",
+    "stylelint": "^16.1.0"
+  },
+  "engines": {
+    "node": ">=16.17.0",
+    "npm": ">=8.15.0"
+  },
+  "config": {
+    "wp_org_slug": "woocommerce-gateway-stripe",
+    "version_replace_paths": [
+      "includes",
+      "templates",
+      "vendreo-card-gateway.php"
+    ]
+  },
+  "scripts": {
+    "lint:js": "eslint . --ext=js",
+    "lint:css": "stylelint 'assets/**/*.css'"
+  }
+}
