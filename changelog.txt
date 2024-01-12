@@ -1,9 +1,9 @@
 *** Vendreo Card Gateway Changelog ***
 
-2024.01.05 - version 1.0.1
+2024-01-05 - version 1.0.1
 * [Update] - Renamed files to remove the word WooCommerce.
 * [Update] - License changed to GPLv3.
 * [Tweak] - ReadMe file changes.
 
-2024.01.03 - version 1.0.0
+2024-01-03 - version 1.0.0
 * [Add] - Card gateway plugin released
