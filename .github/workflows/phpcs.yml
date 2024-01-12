@@ -31,7 +31,7 @@ jobs:
       - name: Install WordPress Coding Standards
         run: |
           git clone https://github.com/WordPress/WordPress-Coding-Standards.git wpcs
-          sudo mv wpcs /usr/share/php/PHP/CodeSniffer/Standards/WordPress
+          sudo mv wpcs/* /usr/share/php/PHP/CodeSniffer/Standards/
 
       - name: PHPCS lint and auto-fix
         run: |
