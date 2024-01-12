@@ -35,7 +35,7 @@ jobs:
       # clone the repository
       - uses: actions/checkout@v3
       # use the node version defined in nvmrc
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
       # enable dependencies caching
