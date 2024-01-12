@@ -28,6 +28,6 @@
     ]
   },
   "scripts": {
-    "lint:js": "eslint . --ext=js,jsx,ts,tsx"
+    "lint:js": "eslint . --ext=js"
   }
 }
