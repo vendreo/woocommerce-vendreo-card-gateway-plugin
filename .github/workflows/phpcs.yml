@@ -1,35 +1,39 @@
-name: Lint
+name: PHPCS Auto-fix and Commit
 
 on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
   push:
     branches:
       - feature/phpcs
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  run-linters:
-    name: Run linters
+  phpcs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "7.4"
-          coverage: none
-          tools: phpcs
+          php-version: '7.4'
 
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
+      - name: Install dependencies
+        run: composer install
+
+      - name: PHPCS lint and auto-fix
+        run: |
+          vendor/bin/phpcs --standard=PSR2 -n -p .
+          vendor/bin/phpcbf --standard=PSR2 -n -p .
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Auto-fix PHPCS issues" || true
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.7.0
         with:
-          auto_fix: true
-          php_codesniffer: true
-          # Optional: Ignore warnings
-          php_codesniffer_args: "-n"
+          branch: ${{ github.ref }}
