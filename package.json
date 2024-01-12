@@ -27,6 +27,6 @@
   },
   "scripts": {
     "lint:js": "eslint . --ext=js",
-    "lint:css": "stylelint 'client/**/*.scss' 'client/**/*.css' 'assets/**/*.scss' 'assets/**/*.css'"
+    "lint:css": "stylelint 'assets/**/*.css'"
   }
 }
