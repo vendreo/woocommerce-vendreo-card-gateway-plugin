@@ -1,0 +1,19 @@
+{
+    "name": "vendreo/vendreo-card-gateway",
+    "description": "Take card payments on your woocommerce store.",
+    "license": "GPL-3.0-only",
+    "config": {
+        "platform": {
+            "php": "7.4"
+        },
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "woocommerce/woocommerce-sniffs": "0.1.0"
+    },
+    "extra": {
+        "installer-disable": true
+    }
+}
