@@ -60,7 +60,7 @@ function vendreo_card_register_order_approval_payment_method_type() {
 		return;
 	}
 
-	require_once plugin_dir_path( __FILE__ ) . 'includes/php/class-vendreo-card-block.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/php/class-vendreo-card-gateway-blocks.php';
 
 	add_action(
 		'woocommerce_blocks_payment_method_type_registration',
