@@ -102,24 +102,27 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'country_code'               => 'GB',
 		];
 
-		header( 'Content-Type: application/json' );
-		$ch            = curl_init( $this->url );
-		$authorization = 'Authorization: Bearer ' . $this->secret_key;
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json', 'Accept: application/json', $authorization ] );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_POST, 1 );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $post ) );
-		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
+		$response = wp_remote_post(
+			$this->url,
+			[
+				'method'      => 'POST',
+				'headers'     => [
+					'Content-Type'  => 'application/json',
+					'Accept'        => 'application/json',
+					'Authorization' => 'Bearer ' . $this->secret_key,
+				],
+				'redirection' => 5,
+				'httpversion' => '1.0',
+				'timeout'     => 45,
+				'body'        => wp_json_encode( $post ),
+			]
+		);
 
-		$result        = curl_exec( $ch );
-		$response_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-		curl_close( $ch );
-
-		if ( 200 <> $response_code || ! $result ) {
+		if ( is_wp_error( $response ) ) {
 			return false;
 		}
 
-		$result = json_decode( $result );
+		$result = json_decode( $response['body'] );
 
 		return [
 			'result'   => 'success',
