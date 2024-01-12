@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -28,10 +28,15 @@ jobs:
           chmod +x php_codesniffer.phar
           chmod +x php_codebeautifier.phar
 
+      - name: Install WordPress Coding Standards
+        run: |
+          git clone https://github.com/WordPress/WordPress-Coding-Standards.git wpcs
+          sudo mv wpcs /usr/share/php/PHP/CodeSniffer/Standards/WordPress
+
       - name: PHPCS lint and auto-fix
         run: |
-          ./php_codesniffer.phar --standard=Generic,WordPress,Squiz,PSR2 -n -p .
-          ./php_codebeautifier.phar --standard=PSR12 -n -p .
+          ./php_codesniffer.phar --standard=WordPress,Generic,PSR2 -n -p .
+          ./php_codebeautifier.phar --standard=WordPress,Generic,PSR2 -n -p .
 
       - name: Commit changes
         run: |
