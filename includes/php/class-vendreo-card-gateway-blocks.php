@@ -28,7 +28,7 @@ final class Vendreo_Card_Gateway_Blocks extends AbstractPaymentMethodType {
 				'wp-html-entities',
 				'wp-i18n',
 			],
-			null,
+			1.0,
 			true
 		);
 
