@@ -115,7 +115,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 		$response_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 		curl_close( $ch );
 
-		if ( $response_code <> 200 || ! $result ) {
+		if ( 200 <> $response_code || ! $result ) {
 			return false;
 		}
 
