@@ -79,3 +79,5 @@ function vendreo_card_register_order_approval_payment_method_type()
         }
     );
 }
+
+?>
