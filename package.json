@@ -28,5 +28,8 @@
       "templates",
       "vendreo-card-gateway.php"
     ]
+  },
+  "scripts": {
+    "lint:js": "eslint . --ext=js,jsx,ts,tsx"
   }
 }
