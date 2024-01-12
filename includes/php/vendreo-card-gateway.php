@@ -112,10 +112,10 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1 );
 
 		$result       = curl_exec( $ch );
-		$responseCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
+		$response_code = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 		curl_close( $ch );
 
-		if ( $responseCode <> 200 || ! $result ) {
+		if ( $response_code <> 200 || ! $result ) {
 			return false;
 		}
 
@@ -156,9 +156,9 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 	public function callback_handler() {
 		$json    = file_get_contents( 'php://input' );
 		$data    = json_decode( $json );
-		$orderId = explode( '|', $data->reference_id )[0];
+		$order_id = explode( '|', $data->reference_id )[0];
 
-		$order = wc_get_order( $orderId );
+		$order = wc_get_order( $order_id );
 
 		if ( 'card_payment_completed' === 'payment_completed' || $data->act === 'payment_completed' ) {
 			$order->payment_complete();
