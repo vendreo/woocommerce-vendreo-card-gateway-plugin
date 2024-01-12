@@ -35,8 +35,8 @@ jobs:
 
       - name: PHPCS lint and auto-fix
         run: |
-          ./php_codesniffer.phar --standard=WordPress,Generic,PSR2 -n -p .
-          ./php_codebeautifier.phar --standard=WordPress,Generic,PSR2 -n -p .
+          ./php_codesniffer.phar --standard=Generic,WordPress,Squiz,PSR2 -n -p .
+          ./php_codebeautifier.phar --standard=PSR12 -n -p .
 
       - name: Commit changes
         run: |
