@@ -8,11 +8,8 @@
     "url": "git@github.com:vendreo/woocommerce-vendreo-card-gateway-plugin.git"
   },
   "devDependencies": {
-    "@woocommerce/eslint-plugin": "^2.2.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-react-hooks": "4.2.0",
+    "@wordpress/eslint-plugin": "^17.5.0",
     "lint-staged": "11.1.2",
-    "prettier": "npm:wp-prettier@^2.0.5",
     "stylelint": "^16.1.0",
     "stylelint-config-prettier": "8.0.2",
     "stylelint-config-wordpress": "^3.0.0",
