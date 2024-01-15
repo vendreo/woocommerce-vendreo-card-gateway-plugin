@@ -13,4 +13,4 @@
 * [Tweak] - ReadMe file changes.
 
 2024-01-03 - version 1.0.0
-* [Add] - Card gateway plugin released
+* [Add] - Card gateway plugin released.
