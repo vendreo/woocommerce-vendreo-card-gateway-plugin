@@ -109,7 +109,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
                 'headers'     => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . $this->secret_key
+                    'Authorization' => 'Bearer ' . $this->secret_key,
                 ],
                 'redirection' => 5,
                 'httpversion' => '1.0',
