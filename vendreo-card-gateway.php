@@ -13,7 +13,7 @@ Tested on WordPress up to: 6.4.2
 Requires at least WooCommerce: 6.9
 Tested on WooCommerce up to: 8.4.0
 Tested on PHP: 7.4 & 8.0
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 Text Domain: vendreo-card-gateway
 Domain Path: /languages
 */

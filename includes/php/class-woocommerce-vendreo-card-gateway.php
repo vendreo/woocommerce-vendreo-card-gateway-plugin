@@ -163,7 +163,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 
 		$order = wc_get_order( $order_id );
 
-		if ( 'card_payment_completed' === 'payment_completed' || 'payment_completed' === $data->act ) {
+		if ( 'card_payment_completed' === $data->act || 'payment_completed' === $data->act ) {
 			$order->payment_complete();
 			wc_reduce_stock_levels( $order->get_id() );
 		}
