@@ -104,7 +104,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 
 		$response = wp_remote_post(
             $this->url,
-            array(
+            [
                 'method' => 'POST',
                 'headers'     => [
                     'Content-Type' => 'application/json',
@@ -115,7 +115,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
                 'httpversion' => '1.0',
                 'timeout' => 45,
                 'body' => json_encode( $post ),
-            )
+            ]
         );
 
         if ( is_wp_error( $response ) ) {
