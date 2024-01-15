@@ -102,9 +102,9 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'country_code'               => 'GB',
 		];
 
-        $response = wp_remote_post(
+		$response = wp_remote_post(
             $this->url,
-            array(
+                array(
                 'method' => 'POST',
                 'headers'     => [
                     'Content-Type' => 'application/json',
