@@ -1,6 +1,6 @@
 === Vendreo Card Gateway ===
 Contributors: vendreo
-Tags: wordpress, wordpress-plugin, woocommerce, visa, payment-gateway, woocommerce-plugin, payment-processing, woocommerce-payment, mastercard
+Tags: woocommerce, visa, mastercard, payment-gateway, payment-processing
 Requires at least: 6.1
 Tested up to: 6.4
 Stable tag: 1.0.2

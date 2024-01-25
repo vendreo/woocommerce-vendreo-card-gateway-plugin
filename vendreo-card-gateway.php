@@ -1,22 +1,19 @@
 <?php
 /*
-Plugin Name: Vendreo Card Gateway
-Plugin URI: https://github.com/vendreo/woocommerce-vendreo-card-gateway-plugin
-Description: Accept card payments using Vendreo's Payment Gateway.
-Version: 1.0.1
-Author: Vendreo
-Author URI: docs.vendreo.com
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Requires at least WordPress: 6.1.1
-Tested on WordPress up to: 6.4.2
-Requires at least WooCommerce: 6.9
-Tested on WooCommerce up to: 8.4.0
-Tested on PHP: 7.4 & 8.0
-Stable tag: 1.0.2
-Text Domain: vendreo-card-gateway
-Domain Path: /languages
-*/
+ * Plugin Name:       Vendreo Card Gateway
+ * Plugin URI:        https://github.com/vendreo/woocommerce-vendreo-card-gateway-plugin
+ * Description:       Accept card payments using Vendreo's Payment Gateway.
+ * Version:           1.0.2
+ * Requires at least: 6.1.1
+ * Requires PHP:      7.2
+ * Author:            Vendreo
+ * Author URI:        https://docs.vendreo.com/
+ * License:           GPLv3
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
+ * Update URI:        https://wordpress.org/plugins/vendreo-card-gateway/
+ * Text Domain:       vendreo-card-gateway
+ * Domain Path:       /languages
+ */
 
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 
