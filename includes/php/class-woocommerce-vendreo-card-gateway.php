@@ -58,6 +58,14 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 				'default'     => 'yes',
 				'desc_tip'    => true,
 			],
+			'enable_token_payments' => [
+				'title'       => 'Enable Token Payments',
+				'label'       => 'Enable Test Mode',
+				'type'        => 'checkbox',
+				'description' => 'Allow users to pay using pre saved card details.',
+				'default'     => 'no',
+				'desc_tip'    => true,
+			],
 			'test_application_key' => [
 				'title' => 'Test Application Key',
 				'type'  => 'text',
@@ -77,8 +85,22 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 		];
 	}
 
+	protected function prepareTokenData()
+	{
+		// todo add remote user id check also
+		if(!$this->get_option( 'enable_token_payments' ) || !get_current_user_id()) {
+			return [];
+		}
+
+		return [
+			'enable_pay_by_token' => $this->get_option( 'enable_token_payments' ),
+			'remote_user_id' => get_current_user_id(),
+		];
+	}
+
 	public function process_payment( $order_id ) {
 		$order = wc_get_order( $order_id );
+		$tokenData = $this->prepareTokenData();
 
 		$order->update_status( 'pending-payment', __( 'Awaiting Vendreo Card Payment', 'vendreo-card-gateway' ) );
 
@@ -100,6 +122,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'customer_billing_town'      => $order->get_billing_city(),
 			'customer_billing_post_code' => $order->get_billing_postcode(),
 			'country_code'               => 'GB',
+			...$tokenData,
 		];
 
 		$response = wp_remote_post(
