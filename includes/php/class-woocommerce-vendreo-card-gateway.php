@@ -121,8 +121,9 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'customer_billing_town'      => $order->get_billing_city(),
 			'customer_billing_post_code' => $order->get_billing_postcode(),
 			'country_code'               => 'GB',
-			$tokenData,
 		];
+
+		$post = array_merge($post, $tokenData);
 
 		$response = wp_remote_post(
 			$this->url,
