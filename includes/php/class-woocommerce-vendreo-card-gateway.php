@@ -85,7 +85,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 		];
 	}
 
-	protected function prepareTokenData()
+	protected function prepareTokenData($orderPostcode)
 	{
 		if(!$this->get_option( 'enable_token_payments' ) || !get_current_user_id()) {
 			return [];
@@ -93,13 +93,13 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 
 		return [
 			'enable_pay_by_token' => $this->get_option( 'enable_token_payments' ) === 'yes',
-			'remote_user_id' => get_current_user_id(),
+			'remote_user_id' => hash('sha512', get_current_user_id().str_replace(' ', '', strtolower($orderPostcode ?? ''))),
 		];
 	}
 
 	public function process_payment( $order_id ) {
 		$order = wc_get_order( $order_id );
-		$tokenData = $this->prepareTokenData();
+		$tokenData = $this->prepareTokenData($order->get_billing_postcode());
 
 		$order->update_status( 'pending-payment', __( 'Awaiting Vendreo Card Payment', 'vendreo-card-gateway' ) );
 
