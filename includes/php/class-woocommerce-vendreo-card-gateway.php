@@ -30,27 +30,27 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields = [
-			'enabled'              => [
+			'enabled'               => [
 				'title'       => 'Enable/Disable',
 				'label'       => 'Enable Vendreo Card Gateway',
 				'type'        => 'checkbox',
 				'description' => '',
 				'default'     => 'no',
 			],
-			'title'                => [
+			'title'                 => [
 				'title'       => 'Title',
 				'type'        => 'text',
 				'description' => 'This controls the title which the user sees during checkout.',
 				'default'     => 'Vendreo Card Payments',
 				'desc_tip'    => true,
 			],
-			'description'          => [
+			'description'           => [
 				'title'       => 'Description',
 				'type'        => 'textarea',
 				'description' => 'This controls the description which the user sees during checkout.',
 				'default'     => 'Pay safe and secure using your card.',
 			],
-			'testmode'             => [
+			'testmode'              => [
 				'title'       => 'Test mode',
 				'label'       => 'Enable Test Mode',
 				'type'        => 'checkbox',
@@ -58,27 +58,47 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 				'default'     => 'yes',
 				'desc_tip'    => true,
 			],
-			'test_application_key' => [
+			'enable_token_payments' => [
+				'title'       => 'Enable Token Payments',
+				'label'       => 'Enable Token Payments',
+				'type'        => 'checkbox',
+				'description' => 'Allow users to pay using pre saved card details.',
+				'default'     => 'no',
+				'desc_tip'    => true,
+			],
+			'test_application_key'  => [
 				'title' => 'Test Application Key',
 				'type'  => 'text',
 			],
-			'test_secret_key'      => [
+			'test_secret_key'       => [
 				'title' => 'Test Secret Key',
 				'type'  => 'password',
 			],
-			'application_key'      => [
+			'application_key'       => [
 				'title' => 'Live Application Key',
 				'type'  => 'text',
 			],
-			'secret_key'           => [
+			'secret_key'            => [
 				'title' => 'Live Secret Key',
 				'type'  => 'password',
 			],
 		];
 	}
 
+	protected function prepareTokenData( $order_postcode ) {
+		if ( ! $this->get_option( 'enable_token_payments' ) || ! get_current_user_id() ) {
+			return [];
+		}
+
+		return [
+			'enable_pay_by_token' => $this->get_option( 'enable_token_payments' ) === 'yes',
+			'remote_user_id'      => hash( 'sha512', get_current_user_id() . str_replace( ' ', '', strtolower( $order_postcode ?? '' ) ) ),
+		];
+	}
+
 	public function process_payment( $order_id ) {
-		$order = wc_get_order( $order_id );
+		$order     = wc_get_order( $order_id );
+		$token_data = $this->prepareTokenData( $order->get_billing_postcode() );
 
 		$order->update_status( 'pending-payment', __( 'Awaiting Vendreo Card Payment', 'vendreo-card-gateway' ) );
 
@@ -102,19 +122,21 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 			'country_code'               => 'GB',
 		];
 
+		$post = array_merge( $post, $token_data );
+
 		$response = wp_remote_post(
 			$this->url,
 			[
-				'method' => 'POST',
-				'headers' => [
-					'Content-Type' => 'application/json',
-					'Accept' => 'application/json',
+				'method'      => 'POST',
+				'headers'     => [
+					'Content-Type'  => 'application/json',
+					'Accept'        => 'application/json',
 					'Authorization' => 'Bearer ' . $this->secret_key,
 				],
 				'redirection' => 5,
 				'httpversion' => '1.0',
-				'timeout' => 45,
-				'body' => json_encode( $post ),
+				'timeout'     => 45,
+				'body'        => json_encode( $post ),
 			]
 		);
 
