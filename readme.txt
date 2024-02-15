@@ -39,7 +39,7 @@ Try resolving this by:
 
 == Changelog ==
 
-2024-02-15 - version 1.0.3
+= 2024-02-15 - version 1.0.3 =
 * [Update] - Replaced json_encode calls with wp_json_encode().
 * [Remove] - Removed Update URI: from header.
 
