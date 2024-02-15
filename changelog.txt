@@ -1,5 +1,9 @@
 *** Vendreo Card Gateway Changelog ***
 
+2024-02-15 - version 1.0.3
+* [Update] - Replaced json_encode calls with wp_json_encode().
+* [Remove] - Removed Update URI: from header.
+
 2024-01-15 - version 1.0.2
 * [Add] - Added in GitHub Action supporting files for code linting checks.
 * [Update] - Replaced Curl calls with wp_remote_post().
