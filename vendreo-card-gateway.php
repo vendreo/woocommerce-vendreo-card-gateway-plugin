@@ -10,7 +10,6 @@
  * Author URI:        https://docs.vendreo.com/
  * License:           GPLv3
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
- * Update URI:        https://wordpress.org/plugins/vendreo-card-gateway/
  * Text Domain:       vendreo-card-gateway
  * Domain Path:       /languages
  */
