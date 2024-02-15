@@ -114,7 +114,7 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 				'redirection' => 5,
 				'httpversion' => '1.0',
 				'timeout' => 45,
-				'body' => json_encode( $post ),
+				'body' => wp_json_encode( $post ),
 			]
 		);
 

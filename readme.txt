@@ -3,7 +3,7 @@ Contributors: vendreo
 Tags: woocommerce, visa, mastercard, payment-gateway, payment-processing
 Requires at least: 6.1
 Tested up to: 6.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -39,12 +39,9 @@ Try resolving this by:
 
 == Changelog ==
 
-= 2024-01-15 - version 1.0.2 =
-* [Add] - Added in GitHub Action supporting files for code linting checks.
-* [Update] - Replaced Curl calls with wp_remote_post().
-* [Update] - Renamed /includes/php/vendreo-card-block.php to /includes/php/class-vendreo-card-gateway-blocks.php.
-* [Update] - Renamed /includes/php/vendreo-card-gateway.php to /includes/php/woocommerce-vendreo-card-gateway.php.
-* [Tweak] - ReadMe file changes.
+= 2024-02-15 - version 1.0.3 =
+* [Update] - Replaced json_encode calls with wp_json_encode().
+* [Remove] - Removed Update URI: from header.
 
 [See changelog for all versions](https://raw.githubusercontent.com/vendreo/woocommerce-vendreo-card-gateway-plugin/main/changelog.txt).
 
