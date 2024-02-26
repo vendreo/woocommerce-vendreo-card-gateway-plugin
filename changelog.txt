@@ -1,5 +1,9 @@
 *** Vendreo Card Gateway Changelog ***
 
+2024-02-26 - version 1.0.4
+* [Add] - Vendreo full colour icon.
+* [Update] - Readme to include Vendreo API links to T&C and Privacy Policy.
+
 2024-02-15 - version 1.0.3
 * [Update] - Replaced json_encode calls with wp_json_encode().
 * [Remove] - Removed Update URI: from header.
