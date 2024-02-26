@@ -13,7 +13,6 @@ class WooCommerce_Vendreo_Card_Gateway extends WC_Payment_Gateway {
 		$this->title        = 'Vendreo (Card)';
 
 		$this->method_description = __( 'Accept card payments using Vendreo\'s Payment Gateway.', 'vendreo-card-gateway' );
-		$this->icon               = plugin_dir_path(__FILE__) . '/includes/images/vendreo-fullcolour.svg';
 
 		$this->supports = [ 'products' ];
 

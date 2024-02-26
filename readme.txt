@@ -19,7 +19,7 @@ With decades of payments experience, the Vendreo team combine their expertise an
 Vendreo's latest payment solution. Accept card payments online through your WooCommerce store safely and securely.
 
 Note:
-This plugin communicates with our own secure API to process your payments. 
+This plugin uses third party API requests and will communicate with Vendreo's secure API to process your payments via the URL https://api.vendreo.com/v1/request-payment.
 
 To view the [API documentation please visit](https://docs.vendreo.com/).
 
@@ -49,8 +49,8 @@ Try resolving this by:
 == Changelog ==
 
 = 2024-02-26 - version 1.0.4 =
-* [Add] - Vendreo full colour icon.
 * [Update] - Readme to include Vendreo API links to T&C and Privacy Policy.
+* [Update] - Function names within vendreo-card-gateway.php for consistency.
 
 [See changelog for all versions](https://raw.githubusercontent.com/vendreo/woocommerce-vendreo-card-gateway-plugin/main/changelog.txt).
 
