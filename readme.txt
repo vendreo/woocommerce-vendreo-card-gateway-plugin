@@ -51,6 +51,7 @@ Try resolving this by:
 = 2024-02-26 - version 1.0.4 =
 * [Update] - Readme to include Vendreo API links to T&C and Privacy Policy.
 * [Update] - Function names within vendreo-card-gateway.php for consistency.
+* [Remove] - Unused icon.
 
 [See changelog for all versions](https://raw.githubusercontent.com/vendreo/woocommerce-vendreo-card-gateway-plugin/main/changelog.txt).
 
