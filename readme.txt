@@ -3,7 +3,7 @@ Contributors: vendreo
 Tags: woocommerce, visa, mastercard, payment-gateway, payment-processing
 Requires at least: 6.1
 Tested up to: 6.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 Requires PHP: 7.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -17,6 +17,15 @@ Vendreo are disrupting the payment processing industry, with a suite of class-le
 With decades of payments experience, the Vendreo team combine their expertise and points their focus exactly where it needs to be for the online world to benefit.
 
 Vendreo's latest payment solution. Accept card payments online through your WooCommerce store safely and securely.
+
+Note:
+This plugin uses third party API requests and will communicate with Vendreo's secure API to process your payments via the URL https://api.vendreo.com/v1/request-payment.
+
+To view the [API documentation please visit](https://docs.vendreo.com/).
+
+To view our [Terms And Conditions please visit](https://pay.vendreo.com/terms-and-conditions).
+
+To view our [Privacy Policy please visit](https://pay.vendreo.com/privacy-policy).
 
 
 == Frequently Asked Questions ==
@@ -39,9 +48,10 @@ Try resolving this by:
 
 == Changelog ==
 
-= 2024-02-15 - version 1.0.3 =
-* [Update] - Replaced json_encode calls with wp_json_encode().
-* [Remove] - Removed Update URI: from header.
+= 2024-02-26 - version 1.0.4 =
+* [Update] - Readme to include Vendreo API links to API docs, T&C and Privacy Policy.
+* [Update] - Function names within vendreo-card-gateway.php for consistency.
+* [Remove] - Unused icon.
 
 [See changelog for all versions](https://raw.githubusercontent.com/vendreo/woocommerce-vendreo-card-gateway-plugin/main/changelog.txt).
 
