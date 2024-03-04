@@ -1,5 +1,8 @@
 *** Vendreo Card Gateway Changelog ***
 
+2024-03-04 - version 1.0.7
+* [Update] - Fix plugin images.
+
 2024-03-04 - version 1.0.6
 * [Add] - WP readme images.
 
