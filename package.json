@@ -18,7 +18,7 @@
     "npm": ">=8.15.0"
   },
   "config": {
-    "wp_org_slug": "woocommerce-gateway-stripe",
+    "wp_org_slug": "vendreo-card-gateway",
     "version_replace_paths": [
       "includes",
       "templates",
